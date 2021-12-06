@@ -1,6 +1,12 @@
+import os
+os.chdir("/home/pi/ROSA---i/")
+
+
 from os.path import join
 from tkinter import *
 from tkinter import filedialog
+from tkinter import messagebox
+from functools import partial
 
 import cv2
 import numpy as np
@@ -11,10 +17,12 @@ from PIL import Image
 import glob
 import time
 import math
+import pyttsx3
 #import os
 import csv
 from threading import Timer
 from datetime import date,datetime
+
 
 
 root =Tk()
@@ -23,6 +31,14 @@ root.resizable(0,0)
 
 root.geometry("790x400+10+10")
 root.configure(background="white")
+
+f1=Frame(root,bg="white")
+f1.place(relwidth=1,relheight=1)
+
+
+
+label=Label(f1,text="WELCOME TO R O S A - i",font=("comicsansms"," 68", "bold"),fg="#db04a6",background="white")
+label.place(relx=-0.25,relwidth=1.5,relheight=0.2)
 
 
 
@@ -38,11 +54,29 @@ f1.place(relwidth=1,relheight=1)
 
 label=Label(f1,text="R O S A - i",font=("comicsansms"," 68", "bold"),fg="#db04a6",background="white")
 label.place(relx=-0.25,relwidth=1.5,relheight=0.2)
-
 pic1=PhotoImage(file="TEACH1.png")
 openpicc=PhotoImage(file="OPEN1.png")
 helppicc=PhotoImage(file="HELP1.png")
 toolspicc=PhotoImage(file="TOOLS1.png")
+
+def too():
+    e=pyttsx3.init()
+    e.setProperty('voice','english_rp+f4')
+    text="Welcome to ROSA-i"
+    e.say(text)
+    e.runAndWait()
+too()
+
+
+
+
+    
+
+
+
+
+
+
 
 ##################################################################################################################
 """def speak_buildup(text):
@@ -76,7 +110,21 @@ def when_teach():
     global folder3
     global folder4
     global capture_camera
-
+    
+    
+    
+    def teach():
+        
+    
+        e=pyttsx3.init()
+        e.setProperty('voice','english_rp+f4')
+        text="teach"
+        e.say(text)
+        e.runAndWait()
+    teach()
+    
+            
+    
     window=Toplevel()
     #when creating loop windows ,we must give >> toplevel<< instead creating simple window...
 
@@ -85,16 +133,10 @@ def when_teach():
     window.configure(bg="white")   #so here,background will be red as bg=red...
     #l11=Label(root,text="R O S A -i",font=("times new roman","39","bold"),bg="white",fg="pink")
     #the above code writes a text creating label and for the texts ,the dimensions are given...
+   
 
 
-    """def speak_rosaisready(text):
-        tts=gTTS(text=text, lang="en")
-        filename = "voice.mp3"
-        tts.save(filename)
-        playsound.playsound(filename)"""
-
-
-
+        
 
     circle1=PhotoImage(file="newbackbutton.png")
     mainfolder=PhotoImage(file="mainfolderpic.png")
@@ -690,11 +732,15 @@ def when_teach():
             break
     cam.release() 
     cv2.destroyAllWindows()
+    
+    
+    
 
 
 
 
 ####################################################################################################################
+
 
 def whenopen():
 
@@ -706,6 +752,17 @@ def whenopen():
     global four1
     global test1
     global live1
+    
+    
+    def whenopen():
+        e=pyttsx3.init()
+        e.setProperty('voice','english_rp+f4')
+        text="open"
+        e.say(text)
+        e.runAndWait()
+    whenopen()
+    
+    
 
     window2=Toplevel()
 
@@ -741,6 +798,14 @@ def whenopen():
         global buttonclick
         global buttonclick1
         
+        def choosethefolder():
+            e=pyttsx3.init()
+            e.setProperty('voice','english_rp+f4')
+            text="choose folder"
+            e.say(text)
+            e.runAndWait()
+        choosethefolder()
+        
         files=[]
         #cam.release()
         #fla=filedialog.askdirectory(initialdir="C:/Users/acer/Desktop",title="select the image",filetypes=[(".csv Files", "*.csv"),("image files","*.jpg")])
@@ -754,6 +819,8 @@ def whenopen():
         path_for_csvfile = (fla+"/4.csv")
         print(path_for_csvfile)
         print("pass")
+        
+
 
         buttonclick = 0
         buttonclick1=0
@@ -763,13 +830,30 @@ def whenopen():
             global l3
             buttonclick += 1
             l3.configure(text= " 0" + str(buttonclick))
-                    
+                  
                  
         def count1():
             global buttonclick1
             global l1
             buttonclick1 += 1
             l1.configure(text= " 0" + str(buttonclick1))
+        
+        
+    
+        
+        def folderB():
+            e=pyttsx3.init()
+            e.setProperty('voice','english_rp+f4')
+            text="folderB chosen"
+            e.say(text)
+            e.runAndWait()
+        folderB()
+            
+            
+
+
+    
+
         
         def testing():
         #cam.release()
@@ -814,6 +898,25 @@ def whenopen():
                 print("non_black_pixels",x)
                 non_black_pixels = x.item(0)
                 print(type(non_black_pixels))
+                
+                def hello():
+                    e=pyttsx3.init()
+                    e.setProperty('voice','english_rp+f4')
+                    text="rejected"
+                    e.say(text)
+                    e.runAndWait()
+                    
+                def accep():
+                    e=pyttsx3.init()
+                    e.setProperty('voice','english_rp+f4')
+                    text="accepted"
+                    e.say(text)
+                    e.runAndWait()
+
+                
+                    
+                
+
 
                 def delete_img1():
                     circleebtn.place_forget()
@@ -831,6 +934,7 @@ def whenopen():
                         circleebtn.image = circlee
                         circleebtn.place(relx=0.4,rely=0.5,relwidth=0.27,relheight=0.12)
                         count()
+                        hello()
                         today = datetime.now()
                         d1 = today.strftime("%d/%m/%Y %H:%M:%S")
                         row_list = ['Rejected',d1]
@@ -846,14 +950,28 @@ def whenopen():
                         circle2btn.image = circle2
                         circle2btn.place(relx=0.4,rely=0.5,relwidth=0.30,relheight=0.12)
                         count1()
+                        accep()
                         today1 = datetime.now()
                         d2 = today1.strftime("%d/%m/%Y %H:%M:%S")
                         row_list = ['Accepted',d2]
+                        welcome()
                         writer = csv.writer(file)
               #currentdatetime = datetime.now()
                         writer.writerow(row_list)
                         window2.update()
                         window2.after(2000,delete_img2())
+                        def accep():
+                            e=pyttsx3.init()
+                            e.setProperty('voice','english_rp+f4')
+                            text="accepted"
+                            e.say(text)
+                            e.runAndWait()
+                
+                    
+                    
+
+                        
+   
 
 
             try:
@@ -862,6 +980,8 @@ def whenopen():
                 pass
 
             #Timer(5,testing).start()
+            
+            
 
 
 #######################################################################################################
@@ -916,6 +1036,8 @@ def whenopen():
 
     cv2.destroyAllWindows()
     cam.release()
+    
+
 
 
 ####################################################################################################################################################
@@ -924,10 +1046,20 @@ def whenhelp():
 
     window3.geometry("790x400+10+10") 
     window3.configure(background="white")
+    
+    
 
     global wifi1
     global pass1
     global conn1
+    
+    def whenhelp():
+        e=pyttsx3.init()
+        e.setProperty('voice','english_rp+f4')
+        text="help"
+        e.say(text)
+        e.runAndWait()
+    whenhelp()
 
 
 
@@ -962,15 +1094,25 @@ def whenhelp():
     circle1btn=Button(window3,image=circle1,border=0,bg="white",command=window3.destroy)
     circle1btn.image= circle1
     circle1btn.place(relx=0.1,rely=0.75,relwidth=0.14,relheight=0.09)
+    
+
+    
+    
+
+
+    
 
 
 ###################################################################################33
+
+
 b1=Button(f1,image=pic1,border=0,bg="white",command=when_teach,cursor="hand2")
 b1.place(relx=0.05,rely=0.25,relwidth=0.44,relheight=0.30)
 
+
+
 b2=Button(f1,image=openpicc,border=0,bg="white",command=whenopen,cursor="dot")
 b2.place(relx=0.52,rely=0.25,relwidth=0.43,relheight=0.30)
-
 
 
 b3=Button(f1,image=helppicc,border=0,bg="white",command=whenhelp,cursor="man")
@@ -981,6 +1123,99 @@ b3.place(relx=0.05,rely=0.6,relwidth=0.43,relheight=0.30)
 b4=Button(f1,image=toolspicc,border=0,bg="white",cursor="diamond_cross")
 b4.place(relx=0.52,rely=0.6,relwidth=0.44,relheight=0.30)
 
+
+
+# Simple demo of reading each analog input from the ADS1x15 and printing it to the screen. Author: Tony DiCola License: Public Domain
+from subprocess import call
+import time
+import RPi.GPIO as GPIO
+import os
+
+# Import the ADS1x15 module.
+import Adafruit_ADS1x15
+
+pi_gpio_out_09 =21
+pi_gpio_out_22 =15
+
+GPIO.setmode(GPIO.BOARD)
+
+GPIO.setup(pi_gpio_out_09, GPIO.OUT)
+GPIO.setup(pi_gpio_out_22, GPIO.OUT)
+
+# Create an ADS1115 ADC (16-bit) instance.
+adc = Adafruit_ADS1x15.ADS1115()
+
+# Or create an ADS1015 ADC (12-bit) instance.
+#adc = Adafruit_ADS1x15.ADS1015()
+
+# Note you can change the I2C address from its default (0x48), and/or the I2C
+# bus by passing in these optional parameters:
+#adc = Adafruit_ADS1x15.ADS1015(address=0x49, busnum=1)
+
+# Choose a gain of 1 for reading voltages from 0 to 4.09V.
+# Or pick a different gain to change the range of voltages that are read:
+#  - 2/3 = +/-6.144V
+#  -   1 = +/-4.096V
+#  -   2 = +/-2.048V
+#  -   4 = +/-1.024V
+#  -   8 = +/-0.512V
+#  -  16 = +/-0.256V
+# See table 3 in the ADS1015/ADS1115 datasheet for more info on gain.
+GAIN_BATTERY =2/3
+RATIO_BATTERY =0.1875
+print('Reading ADS1x15 values, press Ctrl-C to quit...')
+# Print nice channel column headers.
+print('| {0:>6} | {1:>6} | {2:>6} | {3:>6} |'.format(*range(4)))
+print('-' * 37)
+# Main loop.
+while True:
+    GPIO.output(pi_gpio_out_09, True)
+   # GPIO.output(pi_gpio_out_22, False)
+    # Read all the ADC channel values in a list.
+    values = [0]*4
+    value_Current =[0]*4
+    value_Voltage =[0]*4
+    value_Voltage_Battery =0
+    value_battery_channel =0
+#    for i in range(4):
+       # Read the specified ADC channel using the previously set gain value.
+    values[1] = adc.read_adc(1,1)
+
+    value_battery_channel = adc.read_adc(0,GAIN_BATTERY)
+    time.sleep(0.9)
+    value_Current[1] =((values[1]*0.125)/100)+0.0289999999999999
+    value_Voltage[1]=(values[1]*0.125/1000)
+
+    value_Voltage_Battery=(value_battery_channel*RATIO_BATTERY/1000)+((value_battery_channel*RATIO_BATTERY/1000)*0.24)-.03
+
+        # Note you can also pass in an optional data_rate parameter that controls
+        # the ADC conversion time (in samples/second). Each chip has a different
+        # set of allowed data rate values, see datasheet Table 9 config register
+        # DR bit values.
+        #values[i] = adc.read_adc(i, gain=GAIN, data_rate=128)
+        # Each value will be a 12 or 16 bit signed integer value depending on the
+        # ADC (ADS1015 = 12-bit, ADS1115 = 16-bit).
+    # Print the ADC values.
+ #   print('| {0:>6} | {1:>6} | {2:>6} | {3:>6} |'.format(*values))
+ #   print('| {0:>6} | {1:>6} | {2:>6} | {3:>6} |'.format(*value_Current))
+#    print(values[1])
+    print(round(value_Voltage_Battery,2))
+    if round(value_Voltage_Battery,2)<=3.9:
+       GPIO.output(pi_gpio_out_22, True)
+       call("sudo shutdown -h now", shell=True)
+    else:
+       GPIO.output(pi_gpio_out_22, False)
+#    print(round(value_Current[1],2))
+#    print('| {1:>6} |'.format(*values))
+#    print('| {1:>6} |'.format(*value_Current))
+  
+  # Pause for half a second.
+    time.sleep(0.5)
+
+
+
+
 root.mainloop()
+
 
 
