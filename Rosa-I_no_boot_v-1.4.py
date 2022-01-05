@@ -1024,7 +1024,7 @@ def whenopen():
 
         mask = cv2.inRange(hellovid,lower_red,upper_red)
         res = cv2.bitwise_and(frame,frame,mask=mask)
-        edges1 =cv2.Canny(hellovid,100,20)
+        edges1 =cv2.Canny(hellovid,100,40)
         edgesvid2 = ImageTk.PhotoImage(Image.fromarray(hellovid))
         edgesvid1 = ImageTk.PhotoImage(Image.fromarray(edges1))
         bt1["image"]=edgesvid1
